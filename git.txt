@@ -88,6 +88,7 @@ commit,so it raises a merget conflict asking for a clarification so that my chan
 37.Push to remote repository
 If any error while pushing although origin is added.
 git remote remove origin
+38.To push the branch git push origin branchname
 
 
 
