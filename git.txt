@@ -1,0 +1,90 @@
+https://www.youtube.com/watch?v=m08GSxWO1pQ&list=PLu0W_9lII9agwhy658ZPA0MTStKUJTWPi&index=12
+//Pending Videos video12 and 14
+To know current directory - pwd
+1.GIT bash is just a terminal
+2.Let git know who you are by configuring
+
+git config --global user.name "Shruti"
+git config --global user.email "shrutisandeep@gmail.com"
+
+Threestage architecture
+
+snapshot is like capturing photo.
+Say everything is working fine and you want to capture it,then take a snapshot.
+
+If you want to move your changes to next commit,add them to staging area.
+
+Working			 GitDirectory
+Directory--->Staging---->(Repository)
+(Untracked)
+
+.git comprises of all compressed versions of all the commits.This is a hidden file.
+
+1.To make any folder git repository use git init
+2.git status
+3.To move all files to staging.   git add --a
+4.To commit the files.            git commit -m "message"
+5.To know all the commits&details git log
+6.To stage only what is required  git add first.txt
+7.To stop any folder to be tracked rm -rf.git(Removing repository infact)
+Which deletes the .git hidden file(Donot use in real time)
+8.To clone repository             git clone pastelink foldername(optional)
+
+I have staged files and after that If I edit,the ones staged earlier go and commit if we commit.Then stage it again for the 
+file which is chnaged and then commit
+9.To ignore files which shouldnot be tracked  touch .gitignore and add the name of the file which should be ignored
+dir/->Ignores where ever the dir folder is present
+However if files are already being tracked and added later in the .gitignore.They will be still tracked.
+We have to let git explicilty know don't track this file which you were tracking earlier. git rm --cached filename(This will not be tracked.Untracked file) and then commit
+Only outer to be ignored /dir/ (this just represents the path)
+10.Blank folders will be ignored and not tracked
+11.Compare between working directory and staging area git diff
+12.Compare between current staging area and previous commit   git diff --stage
+14.To commit changes without using staging area  git commit -a -m "Direct Commit"(Untracked files will not work here).
+Atleast once thse should be staged earlier
+15.To delete any files  git rm filename.This will be automatically staged and we just need to commit
+16.To change the name of files. git mv oldfilename newfilename.This will be automatically staged and we just need to commit
+17.To show the changes between commits git log -p 
+18.To see last n commits along with diff git log -p -n
+19.To see stats of commits in files      git log --stat
+20.To see all the commits in one line    git log --pretty=oneline
+21.To see all the commits in one line    git log --pretty=short
+21.To see all the commits in one line    git log --pretty=full
+22.TO see last 2 days/weeks commits      git log --since= 2 days/2weeks
+22.TO see last 2 days/weeks commits      git log --pretty=format:%h --%an(check gitscm documentation)
+23.To modify the latest commit           git commit --amend
+24.To see last commit                    git show --summary
+25.To unstage the file back from staging git restore --staged filename
+To discard the modifications in working directory and match previous commit  use git restore filename
+26.To match the content of working directory back to the previous commit git checkout --filename
+
+27.Remote:Meaning something is hosting and we are going to work on that
+git remote add origin https://github.com/ShrutiRajasekhara/DevCopado.git
+git remote -v (gives you ftech and push).However we cannot push anything rite away because in that case any one can push anycode.
+So generate ssh key
+Step 01: ssh-keygen -t ed25519 -C "shrutisandeep12@gmail.com"
+Step 02: eval $(ssh-agent -s)
+Step 03: ssh-add ~/.ssh/id_rsa
+Step 04: tail ~/.ssh/id_rsa.pub
+Past in settings SSHKEY:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBjK8nMxBvcuG7fQUaTy/uBr4oOKMmnfrXbmUbIQbZfl3ldCM/sNLJK8u1BZqs8FH3qb9u/RfMz5ZgbY01kWaF9F3Rq5c3y+uvqQe64ySJd5qOLKJ7iT693Cyg8S7b/39SCZDkQNAud2forKQxevbv14ThwQ6Z7do4UgdZRFGFDmWw60+c4Vgl7OmoJssEXVx9tf7FZ6nHbga6K8MH5m8oHKvcf2Frtv2nMy1/BvG1o0BNokrShMHroYyuUnOH+ufOa2ZMf1h+n53TMC+KN/2rKlQlD9KUMFzaiNUdIhpqQNzNgyqRlz13e/6Ibm0aGuDOwfxeNn408DwDk7Rq1lcEwW89e0A1n7y7BmZYVu9fVk9m1B1Q+7mzR02b3UtcZJGTWlgWqbs/qPYHLQ139RoJ7Lgm3H7bmvqwuwXT2ADByVlRozlGLaqF141XI0REdsPAKErNFyWU36itPBt1uXHa5s/KBMZ5LhwfJTdJhZwF7JL0kxO5BEgrioFxs09flq+nmlA7jkU0ODSdgKfZoy1eV9L1QqE6rj23CgJmzmAq8wwHBJ9Hlm4L2jmj1VMpP9X9WhO4rVznpE8XxKWVEwaKO9gERjHHfGD8M8L1W+LRF2l88skKdxvwjIE/MbuBsQQFLGm3qGnKgtO94yBig77KQx8nANTc4w/0THcqqlMANw== shrutirajasekhara@gmail.com
+git push -u origin master
+28.git config --global alias.st status
+29.Creates branch and puts you there git checkout -b branchName 
+   To switch the branch              git checkout  master
+   To see all the branches	     git branch
+
+30.When you have a repo already:
+git remote add origin https://github.com/ShrutiRajasekhara/git-tutorials.git
+$ git push -u origin master
+31.git merge branchName
+
+
+
+
+
+
+
+
+
+
