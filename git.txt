@@ -79,6 +79,16 @@ git remote add origin https://github.com/ShrutiRajasekhara/git-tutorials.git
 $ git push -u origin master
 31.git merge branchName
 
+32.Last commit from any branch : git branch -v
+33.all the branches which are merged git branch --merged,So that maybe we can delete those branches because of no use
+34.branches which are not merged     git branch --no-merged
+35.Delete branch                     git branch -d branchname->give error if not merged,to confirm give Capital D
+36.When merging the branch if you are overwriting the existing commit changes,git does not understand to take the previous commit or your merged
+commit,so it raises a merget conflict asking for a clarification so that my changes donot override the previous commit.
+37.Push to remote repository
+If any error while pushing although origin is added.
+git remote remove origin
+
 
 
 
