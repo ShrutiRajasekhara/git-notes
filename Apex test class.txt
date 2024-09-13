@@ -1,0 +1,118 @@
+Databaseclass :https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_database.htm
+Specific user testing
+When to use SeeAll=True
+Apex classes tests
+Apex Triggers tests
+Apex replay debugger
+//Check how they created Opportunity test class and triggers
+
+1.Apex class and methods are annotated by @isTest
+2.System.assertEquals(ExpectedValue,ActualValue);
+3.Apex tests don’t have access to pre-existing data in the org, except for access to setup and metadata objects
+4.Test methods can’t make callouts to external services. You can use mock callouts in tests.
+5.SOSL searches performed in a test return empty results. To ensure predictable results, 
+use Test.setFixedSearchResults() to define the records to be returned by the search.
+6.Database.operations will insert good records and ignore bad records instead of denying all the records how the insert operation does.
+
+try{
+Database.saveResult[] results = Database.insert(accounts,false); //If this is true it will become normal insert operation
+for(Datebase.saveResult result : results){
+if(result.isSuccess()){
+System.debug('Success'+result.getId());
+}else{
+for(Database.Error error : result.getErrors()){
+system.debug('Insert failed'+error.getStatusCode());
+}
+	}
+}
+}
+catch(Exception e){
+throw new Exception('Unable to perform insert operation'+e.getMessage());
+}
+
+Setting up testdata:
+----------------------
+1.@isTest 
+static void testing(){}
+2.Using Datafactory class and utilising those methods
+@IsTest
+public class TestFactory{}
+3.@Testsetup
+static void dataCreation(){}
+
+
+System.assert()-->One madatory condition
+System.assertEquals()-->Two mandatory conditions
+
+Unit testing is focusing on the smallest possible bit of code that can be tested.Writing tests saves development time in the long run.
+
+Apex code runs in system mode by default, Field-level security (FLS) and object permissions of the running user are respected in user mode, unlike in system mode.
+List<Account> acc = [SELECT Id FROM Account WITH USER_MODE];
+
+Assert.areEqual(expected, actual)
+Asserts that the two arguments are the same.
+Example:Assert.areEqual(boolPriority,false,'Expected to get False as avergae is less than 100k');
+Assert.Fail(msg)
+Immediately return a fatal error that causes code execution to halt.
+try {
+    Test.startTest();
+      acctWrapper.getRoundedAvgPriceOfOpps();
+    Test.stopTest();
+    Assert.fail('An exception should have been thrown');
+  } catch (AccountWrapper.AWException e) {
+    // THEN
+    Assert.isTrue(
+      e.getMessage().equalsIgnoreCase('no won opportunities'),
+      'Exception message does not match: ' + e.getMessage()
+    );
+  }
+
+@IsTest
+private class PermissionsTests {
+  @TestSetup
+  static void testSetup() {
+    // GIVEN
+    Account a = TestFactory.getAccount('No view For You!', true);
+    Private_Object__c po = new Private_Object__c(Account__c = a.id, Notes__c = 'foo');
+    insert po;
+  }
+  @IsTest
+  static void testNegativePermissionSet() {
+    // GIVEN
+    User u = new User(
+      ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User'].Id,
+      LastName = 'last',
+      Email = 'Cpt.Awesome@awesomesauce.com',
+      UserName = 'Cpt.Awesome.' + DateTime.now().getTime() + '@awesomesauce.com',
+      Alias = 'alias',
+      TimeZoneSidKey = 'America/Los_Angeles',
+      EmailEncodingKey = 'UTF-8',
+      LanguageLocaleKey = 'en_US',
+      LocaleSidKey = 'en_US'
+    );
+    insert u;
+    System.runAs(u) {
+      // WHEN
+      Test.startTest();
+        Private_Object__c[] pos = [SELECT Id, Account__c, Notes__c FROM Private_Object__c];
+      Test.stopTest();
+      // THEN
+      Assert.areEqual(
+        0,
+        pos.size(),
+        'A user without the permission set shouldn\'t see any records');
+    }
+  }
+}
+
+    PermissionSet ps = [
+      SELECT Id
+      FROM PermissionSet
+      WHERE Name = 'Permission_Set_Name'
+    ];
+    insert new PermissionSetAssignment(
+      AssigneeId = u.id,
+      PermissionSetId = ps.Id
+    );
+
+

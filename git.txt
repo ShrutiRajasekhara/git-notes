@@ -1,3 +1,5 @@
+Shruti
+2024-Sep-12
 https://www.youtube.com/watch?v=m08GSxWO1pQ&list=PLu0W_9lII9agwhy658ZPA0MTStKUJTWPi&index=12
 //Pending Videos video12 and 14
 To know current directory - pwd
@@ -86,8 +88,7 @@ $ git push -u origin master
 36.When merging the branch if you are overwriting the existing commit changes,git does not understand to take the previous commit or your merged
 commit,so it raises a merget conflict asking for a clarification so that my changes donot override the previous commit.
 37.Push to remote repository
-If any error while pushing although origin is added.
-git remote remove origin
+If any error while pushing although origin is added.   git remote remove origin
 38.To push the branch git push origin branchname
 
 
