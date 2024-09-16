@@ -1,0 +1,34 @@
+1.Stack Memory and Heap Memory
+all functions ,variable declarations,methods are will be in stack memory
+This be deleted soon after the function or method is returned.
+Each will be built ontop of each others and gets cleared once their job is done.
+2.All the objects will be in heap memory and their reference alone will be in stack memory.
+If the object is no  longer referenced that be removed from heap memomry.
+
+That's the reason where if obj a is changed obj b is also changed in pass be reference.
+And in pass by value the values remain independent.
+
+pass by value:
+int a = 100;
+int b =a;//b=100
+int b =200//b=200
+int a value will be still 100
+
+pass by reference:
+car c1 = new car(Name = 'Toyota');
+car c2 = c1; c2 car = 'Toyota'
+car c2.Name = 'BMW'
+car c1.Name will be also equal to BMW
+since both are poitning to same object
+
+
+Order 1: Irrespetcive of your input if it takes same time.Physical visit to get game
+Order n: If the time taken multiplies th einput size (1 kb file;2min and 5kb file;10 mins)
+
+
+Any algorithm ifcompared to another we use asymptotic algorithms
+Super fastman solves in 5 seconds - Big O
+Super slowman solved in 10 seconds- Big Omega
+Average man solves in   7 seconds - Big Theta	
+
+
